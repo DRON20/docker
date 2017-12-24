@@ -53,21 +53,39 @@ class HttpProcessor(BaseHTTPRequestHandler):
 
     def do_GET(self):
         global robinCount, hashCount
+	data = ''
         if self.requestline.split(" ")[1] == "/round-robin":
             self.send_response(200)
+	    self.send_header("Content-Type", "text")
+	    self.send_header("Content-Length", str(len(data)))
+	    self.end_headers()
             robinCount += 1
         if self.requestline.split(" ")[1] == "/round-robin/stat":
             self.send_response(200)
+	    self.send_header("Content-Type", "text")
+	    self.send_header("Content-Length", str(robinCount))
+	    self.end_headers()
             self.wfile.write(robinCount)
+	    print (robinCount)
         if self.requestline.split(" ")[1] == "/hash":
             self.send_response(200)
+	    self.send_header("Content-Type", "text")
+	    self.send_header("Content-Length", str(len(data)))
+	    self.end_headers()
             hashCount += 1
         if self.requestline.split(" ")[1] == "/hash/stat":
             self.send_response(200)
+	    self.send_header("Content-Type", "text")
+	    self.send_header("Content-Length", str(hashCount))
+	    self.end_headers()
             self.wfile.write(hashCount)
+	    print (hashCount)
         if self.requestline.split(" ")[1] == "/query":
 	    time.sleep(0.1)
             self.send_response(200)
+	    self.send_header("Content-Type", "text")
+	    self.send_header("Content-Length", str(len(data)))
+	    self.end_headers()
         if self.requestline.split(" ")[1] == "/stop":
             sys.exit()
 
