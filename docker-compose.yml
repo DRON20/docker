@@ -1,0 +1,16 @@
+nginx:
+	build: ./nginx
+	links: 
+		- serv1:serv1
+		- serv2:serv2
+	ports:
+		- "8080:8080"
+sev1:
+	build: ./serv1
+	expose:
+		- 8881
+
+serv2:
+	build: ./serv2
+	expose: 
+		- 8882
