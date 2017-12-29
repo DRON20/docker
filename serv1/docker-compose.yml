@@ -1,9 +1,0 @@
-version: '2'
-services:
-  python-serv1:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: "python-container"
-    ports:
-      - '8001:8001'
